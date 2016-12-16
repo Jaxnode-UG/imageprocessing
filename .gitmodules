@@ -1,0 +1,3 @@
+[submodule "generator-core"]
+	path = generator-core
+	url = https://github.com/Jaxnode-UG/generator-core.git
