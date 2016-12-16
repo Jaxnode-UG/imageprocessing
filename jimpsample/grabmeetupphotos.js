@@ -30,6 +30,7 @@ fetch(photosURL).then(results => {
             const filename = parts[parts.length - 1];
             Jimp.read(node.highres_link).then(image => {
                 let position = resizeRule(image.bitmap.width, image.bitmap.height, 800);
+                console.log(filename);
                 image.clone()
                     .scaleToFit(800, 800)
                     .composite(jaxnode.clone().fade(0.5), position.x, position.y)
