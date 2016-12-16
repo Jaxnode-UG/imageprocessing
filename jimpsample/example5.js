@@ -6,6 +6,7 @@ Jimp.read('lenna.png')
         image
             .clone()
             .gaussian(10)
+            .sepia()
             .write('lenna-blur.png');
     })
     .catch(err => {
