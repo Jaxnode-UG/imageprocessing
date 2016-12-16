@@ -5,6 +5,8 @@ This example requires that you have PhotoShop and Node.js installed on your comp
 Once you have cloned this repo you will need to either NPM or Yarn install the modules into generator-core.
 
 ```
+git submodule add https://github.com/Jaxnode-UG/generator-core.git generator-core
+
 cd generator-core
 npm install
 
