@@ -9,6 +9,10 @@ const Jimp = require('jimp');
 const ProgressBar = require('progress');
 const resizeRule = require('./resizerule');
 
+if (!fs.existsSync('../output')) {
+    fs.mkdirSync('../output');
+}
+
 var jaxnodeBug = Jimp.read('../jaxnode.png', (err, jaxnode) => {
     if (err) console.log(err);
 

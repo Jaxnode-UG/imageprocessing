@@ -1,10 +1,15 @@
 
 const fetch = require('node-fetch');
 const Jimp = require('jimp');
+const fs = require('fs');
 const ProgressBar = require('progress');
 const resizeRule = require('./resizerule');
 
 const photosURL = 'https://api.meetup.com/Jax-Node-js-UG/photos?&sign=true&photo-host=public&page=50&key=' + process.env.meetupapi_key;
+
+if (!fs.existsSync('../output')) {
+    fs.mkdirSync('../output');
+}
 
 fetch(photosURL).then(results => {
     return results.json();
