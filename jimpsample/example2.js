@@ -1,3 +1,8 @@
+/*
+ * This script just composits the dice image onto the lenna image.
+ * Apache-2.0 License
+ * Copyright 2017, David Fekke <david@fekke.com>
+ */
 
 const Jimp = require('jimp');
 
@@ -7,6 +12,5 @@ var lenna = new Jimp("lenna.png", function (err) {
         const y = lenna.bitmap.height - ((dice.bitmap.height / 2) + 10);
         lenna.clone().composite(dice.clone().scale(0.5), x, y)
             .write("./lenna-composite.png");
-        //dice.clone().rgba(false).write("./dice-noalpha.png");
     });
 });
