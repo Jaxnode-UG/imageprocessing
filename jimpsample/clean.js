@@ -9,7 +9,9 @@ fs.stat('../output/', (err, results) => {
             console.error(err);
         }
     } else {
-        removeFolderContentsAsync('../output/').then((d) => folderContentsDeleted(d));
+        removeFolderContentsAsync('../output/')
+            .then((d) => folderContentsDeleted(d))
+            .catch(e => console.error(e));
     }
 });
 
