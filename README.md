@@ -18,3 +18,5 @@ node app.js -v -f ../plugins
 The Jimp scripts are under the ['Jimpsample'](https://github.com/Jaxnode-UG/imageprocessing/tree/master/jimpsample) folder.
 
 Copyright JaxNode and Adobe 2017.
+
+High Resolution photos of air craft are courtesy and copyright of the United States Air Force. Revoevom image copyright David Fekke 2017.
