@@ -7,17 +7,17 @@
  * This code is provided under the Apache-2.0 license
  */
 
-(function () {
+(function() {
     "use strict";
 
     var PLUGIN_ID = require("./package.json").name,
         MENU_ID = "makelayerfrompath1",
         MENU_LABEL = "$$$/JavaScripts/Generator/Make Layer From Path 1/Menu=Make Layer From Path 1";
-    
+
     var _generator = null,
         _currentDocumentId = null,
         _config = null;
-    
+
     // Using Adobe ExtendScript to create a new layer from a path named 'Path 1'
     const makeNewLayerFromPath1 = `if (app.documents.length > 0) {
         var docRef = app.activeDocument;
@@ -38,11 +38,12 @@
         _config = config;
 
         console.log("initializing generator getting started tutorial with config %j", _config);
-        
+
         _generator.addMenuItem(MENU_ID, MENU_LABEL, true, false).then(
-            function () {
+            function() {
                 console.log("Menu created", MENU_ID);
-            }, function () {
+            },
+            function() {
                 console.error("Menu creation failed", MENU_ID);
             }
         );
@@ -50,16 +51,16 @@
 
         function initLater() {
             // Flip foreground color
-            
+
             //sendJavascript(makeNewLayerFromPath1);
 
             _generator.onPhotoshopEvent("currentDocumentChanged", handleCurrentDocumentChanged);
             _generator.onPhotoshopEvent("imageChanged", handleImageChanged);
             _generator.onPhotoshopEvent("toolChanged", handleToolChanged);
             requestEntireDocument();
-            
+
         }
-        
+
         process.nextTick(initLater);
 
 
@@ -69,18 +70,19 @@
     /*********** EVENTS ***********/
 
     function handleCurrentDocumentChanged(id) {
-        console.log("handleCurrentDocumentChanged: "+id)
+        console.log("handleCurrentDocumentChanged: " + id)
         setCurrentDocumentId(id);
     }
 
     function handleImageChanged(document) {
-        console.log("Image " + document.id + " was changed:");//, stringify(document));
+        console.log("Image " + document.id + " was changed:"); //, stringify(document));
     }
 
-    function handleToolChanged(document){
-        console.log("Tool changed " + document.id + " was changed:");//, stringify(document));
+    function handleToolChanged(document) {
+        console.log("Tool changed " + document.id + " was changed:"); //, stringify(document));
     }
 
+    // This is the method that gets called if the user clicks on a the menu.
     function handleGeneratorMenuClicked(event) {
         // Ignore changes to other menus
         var menu = event.generatorMenuChanged;
@@ -100,12 +102,12 @@
         if (!documentId) {
             console.log("Determining the current document ID");
         }
-        
+
         _generator.getDocumentInfo(documentId).then(
-            function (document) {
+            function(document) {
                 console.log("Received complete document:", stringify(document));
             },
-            function (err) {
+            function(err) {
                 console.error("[Tutorial] Error in getDocumentInfo:", err);
             }
         ).done();
@@ -119,12 +121,12 @@
     /*********** HELPERS ***********/
 
 
-    function sendJavascript(str){
+    function sendJavascript(str) {
         _generator.evaluateJSXString(str).then(
-            function(result){
+            function(result) {
                 console.log(result);
             },
-            function(err){
+            function(err) {
                 console.log(err);
             });
     }
@@ -149,6 +151,6 @@
     exports.init = init;
 
     // Unit test function exports
-    exports._setConfig = function (config) { _config = config; };
-    
+    exports._setConfig = function(config) { _config = config; };
+
 }());
